@@ -188,7 +188,7 @@ export default env => {
          * This loader handles all static assets (images, video, audio and others), so that you can
          * use (reference) them inside your application.
          *
-         * If you want to handle specific asset ty manually, filter out the extension
+         * If you want to handle specific asset type manually, filter out the extension
          * from `ASSET_EXTENSIONS`, for example:
          * ```
          * Repack.ASSET_EXTENSIONS.filter((ext) => ext !== 'svg')
@@ -231,6 +231,19 @@ export default env => {
           bundleFilename,
           sourceMapFilename,
           assetsPath,
+        },
+      }),
+      new Repack.plugins.ModuleFederationPlugin({
+        name: 'host',
+        shared: {
+          react: {
+            ...Repack.Federated.SHARED_REACT,
+            requiredVersion: '18.3.1',
+          },
+          'react-native': {
+            ...Repack.Federated.SHARED_REACT_NATIVE,
+            requiredVersion: '0.76.6',
+          },
         },
       }),
     ],

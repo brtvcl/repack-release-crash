@@ -238,6 +238,14 @@ export default env => {
         exposes: {
           './App': './App.jsx',
         },
+        shared: {
+          react: {
+            eager: false,
+          },
+          'react-native': {
+            eager: false,
+          },
+        },
       }),
     ],
   };
